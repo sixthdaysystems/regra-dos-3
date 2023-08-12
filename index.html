@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Regra de Três</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        .container {
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Regra de Três</h1>
+        <div>
+            <label for="valor1">Valor 1:</label>
+            <input type="text" id="valor1" placeholder="Valor 1">
+            <label for="valor2">Valor 2:</label>
+            <input type="text" id="valor2" placeholder="Valor 2">
+        </div>
+        <div>
+            <label for="valor3">Valor 3:</label>
+            <input type="text" id="valor3" placeholder="Valor 3">
+            <label for="resultado">Resultado:</label>
+            <input type="text" id="resultado" readonly>
+        </div>
+        <button id="calcular">Calcular</button>
+    </div>
+    <script>
+        const calcularButton = document.getElementById('calcular');
+        const valor1Input = document.getElementById('valor1');
+        const valor2Input = document.getElementById('valor2');
+        const valor3Input = document.getElementById('valor3');
+        const resultadoInput = document.getElementById('resultado');
+
+        valor1Input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                valor2Input.focus();
+                event.preventDefault();
+            }
+        });
+
+        valor2Input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                valor3Input.focus();
+                event.preventDefault();
+            }
+        });
+
+        valor3Input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                calcular();
+                event.preventDefault();
+            }
+        });
+
+        calcularButton.addEventListener('click', calcular);
+
+        function calcular() {
+            const valor1 = parseFloat(valor1Input.value.replace(',', '.'));
+            const valor2 = parseFloat(valor2Input.value.replace(',', '.'));
+            const valor3 = parseFloat(valor3Input.value.replace(',', '.'));
+
+            if (!isNaN(valor1) && !isNaN(valor2) && !isNaN(valor3)) {
+                const resultado = (valor2 * valor3) / valor1;
+                resultadoInput.value = resultado % 1 === 0 ? resultado.toFixed(0) : resultado.toFixed(2);
+            } else {
+                resultadoInput.value = 'Valores inválidos';
+            }
+        }
+    </script>
+</body>
+</html>
