@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,8 @@
             text-align: center;
         }
 
-        input, button {
+        input,
+        button {
             margin: 10px;
             padding: 8px;
             border: 1px solid #ccc;
@@ -41,6 +43,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Calculadora de Regra de Três</h1>
@@ -100,6 +103,11 @@
                 resultadoInput.value = 'Valores inválidos';
             }
         }
+
+        window.onload = function () {
+            document.getElementById("valor1").focus();
+        };
     </script>
 </body>
+
 </html>
